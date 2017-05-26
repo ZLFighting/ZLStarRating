@@ -32,8 +32,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
                         stars:(NSInteger)number
                      starSize:(CGSize)size
-              darkStarImg:(UIImage *)darkImg
-         brightStarImg:(UIImage *)brightImg{
+                  darkStarImg:(UIImage *)darkImg
+                brightStarImg:(UIImage *)brightImg{
     
     if (self = [super initWithFrame:frame]) {
         _numberOfStars = number;
@@ -50,8 +50,8 @@
 
 // 初始化一个星星评价组件,默认5颗星，默认星星的长宽为frame的高度
 - (instancetype)initWithFrame:(CGRect)frame
-              darkStarImg:(UIImage *)darkImg
-         brightStarImg:(UIImage *)brightImg{
+                  darkStarImg:(UIImage *)darkImg
+                brightStarImg:(UIImage *)brightImg{
     
     return [self initWithFrame:frame stars:5 starSize:CGSizeMake(frame.size.height, frame.size.height) darkStarImg:darkImg brightStarImg:brightImg];
 }
@@ -60,8 +60,8 @@
 // 初始化一个星星评价组件，默认星星的长宽为frame的高度
 - (instancetype)initWithFrame:(CGRect)frame
                         stars:(NSInteger)number
-              darkStarImg:(UIImage *)darkImg
-         brightStarImg:(UIImage *)brightImg{
+                  darkStarImg:(UIImage *)darkImg
+                brightStarImg:(UIImage *)brightImg{
     
     return [self initWithFrame:frame stars:number starSize:CGSizeMake(frame.size.height, frame.size.height) darkStarImg:darkImg brightStarImg:brightImg];
 }
@@ -117,7 +117,7 @@
     return (ZLStarButton *)target;
 }
 
-// 一个是从第一个到某个星星开始从左到右依次点亮，一个是从最后一个星星到某个星星从右到左依次熄灭
+// 从最后一个星星到某个星星从右到左依次熄灭
 - (void)starsDownToIndex:(NSInteger)index {
     for (NSInteger i = self.numberOfStars; i > index; --i) {
         ZLStarButton *starButton = [self starForTag:i];
@@ -126,6 +126,7 @@
     }
 }
 
+// 从第一个到某个星星开始从左到右依次点亮
 - (void)starsUpToIndex:(NSInteger)index {
     for (NSInteger i = 0; i <= index; i++) {
         ZLStarButton *starButton = [self starForTag:i];
@@ -210,9 +211,9 @@
     }
     
     ZLStarButton *starButton = [self starForTag:index];
-    if (starButton.selected) { // 选中
+    if (starButton.selected || score == 0) { // 当选中或者分数为0则依次熄灭
         [self starsDownToIndex:index];
-    } else {
+    } else { // 当未选中则依次点亮
         [self starsUpToIndex:index];
     }
     starButton.fractionPart = fractionPart;
