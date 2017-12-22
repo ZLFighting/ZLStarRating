@@ -381,6 +381,5 @@ return _starsControl;
 这时候测试效果如下:
 ![非整星精评价](https://github.com/ZLFighting/ZLStarRating/blob/master/ZLStarRating/非整星精评价.png)
 
-如需看详尽版，请移步 [下载](http://www.demodashi.com/demo/10711.html)
 
 您的支持是作为程序媛的我最大的动力, 如果觉得对你有帮助请送个Star吧,谢谢啦
